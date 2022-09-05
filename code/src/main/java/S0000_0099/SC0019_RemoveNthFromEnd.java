@@ -37,6 +37,27 @@ public class SC0019_RemoveNthFromEnd {
         return head;
     }
 
+    public ListNode removeNthFromEnd2(ListNode head, int n) {
+        ListNode dummy = new ListNode(0, head);
+        int length = getLength(head);
+        ListNode cur = dummy;
+        for (int i = 1; i < length - n + 1; ++i) {
+            cur = cur.next;
+        }
+        cur.next = cur.next.next;
+        ListNode ans = dummy.next;
+        return ans;
+    }
+
+    public int getLength(ListNode head) {
+        int length = 0;
+        while (head != null) {
+            ++length;
+            head = head.next;
+        }
+        return length;
+    }
+
     public static void main(String[] args) {
         ListNode l3 = new ListNode(3,null);
         ListNode l2 = new ListNode(2,l3);
